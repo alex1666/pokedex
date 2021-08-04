@@ -1,33 +1,54 @@
 package com.alex.pokemonlist.presentation.view
-//
-//import android.widget.ImageView
-//import com.alex.pokemonlist.databinding.PokemonItemBinding
-//import com.alex.pokemonlist.domain.model.Pokedex
-//import com.alex.pokemonlist.util.Constants.baseImg
-//import com.livermor.delegateadapter.delegate.ViewBindingDelegateAdapter
-//import com.squareup.picasso.Picasso
-//
-//class PokemonAdapter : ViewBindingDelegateAdapter<Pokedex, PokemonItemBinding>(PokemonItemBinding::inflate)
-//{
-//
-//        override fun isForViewType(item: Any) = item is Pokedex
-//
-//        override fun Pokedex.getItemId() = hashCode()
-//
-//        override fun PokemonItemBinding.onBind(item: Pokedex) {
-//
-//            pokemonId.text=item.id
-//            pokemonName.text = item.name
-//            pokemonHeight.text = item.height
-//            pokemonWeight.text = item.weight
-//            pokemonSpecies.text = item.species
-//            pokemonImg.downloadAndAetImage(item.id)
-//        }
-//
-//        private fun ImageView.downloadAndAetImage(id: String) {
-//            Picasso.get()
-//                .load(baseImg+"${id}.png")
-//                .fit()
-//                .into(this)
-//        }
-//}
+
+import android.content.Context
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import androidx.recyclerview.widget.RecyclerView
+import com.alex.pokemonlist.R
+import com.alex.pokemonlist.databinding.PokemonItemBinding
+import com.alex.pokemonlist.domain.model.Pokemon
+import com.squareup.picasso.Picasso
+
+class PokemonAdapter(
+    private val list: List<Pokemon>,
+    private val context: Context
+) : RecyclerView.Adapter<PokemonAdapter.ViewHolder>() {
+
+    class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        private lateinit var binding: PokemonItemBinding
+        fun bindView(item: Pokemon) {
+            binding = PokemonItemBinding.bind(itemView)
+            binding.root
+            with(binding) {
+                pokemonId.text = item.id.toString()
+                pokemonName.text = item.name
+                pokemonHeight.text = item.height
+                pokemonWeight.text = item.weight
+                pokemonSpecies.text = item.species
+                Picasso.get()
+                    .load(item.icon)
+                    .fit()
+                    .into(pokemonImg)
+            }
+        }
+    }
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+        val view = LayoutInflater.from(context).inflate(R.layout.pokemon_item, parent, false)
+        return ViewHolder(view)
+    }
+
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        val item = list[position]
+        holder.bindView(item)
+    }
+
+    override fun getItemCount(): Int {
+        return list.size
+    }
+}
+
+
+
+

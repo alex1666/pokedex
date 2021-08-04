@@ -20,4 +20,5 @@ open class BaseViewModel: ViewModel(){
     private fun addDisposable(disposable: Disposable) {
         compositeDisposable.add(disposable)
     }
+
 }
