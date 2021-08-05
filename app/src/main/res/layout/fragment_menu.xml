@@ -1,11 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
-    android:padding="6dp"
     tools:context=".presentation.view.MenuFragment">
 
     <LinearLayout
@@ -16,148 +13,27 @@
         android:orientation="vertical"
         android:padding="10dp"
         android:radius="10.0dp"
+        android:gravity="center"
         tools:ignore="MissingConstraints">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="221dp"
-            android:background="@drawable/separator"
-            android:backgroundTint="#FFFFFF"
-            android:orientation="vertical"
-            android:padding="10dp"
-            android:radius="10.0dp"
-            tools:ignore="MissingConstraints">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="100dp"
-                android:orientation="horizontal"
-                android:padding="10dp"
-                android:radius="10.0dp"
-                tools:ignore="MissingConstraints">
-
-                <ImageView
-                    android:id="@+id/img_random"
-                    android:layout_width="150dp"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/random"
-                    tools:ignore="ContentDescription" />
-
-                <ImageView
-                    android:id="@+id/img_favourite"
-                    android:layout_width="150dp"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/unnamed"
-                    tools:ignore="ContentDescription" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="100dp"
-                android:background="@drawable/separator"
-                android:backgroundTint="#9EB6DF"
-                android:padding="20dp"
-                android:radius="10.0dp"
-                tools:ignore="MissingConstraints">
-
-                <com.google.android.material.textfield.TextInputLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:radius="10.0dp">
-
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/search_pokemon"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="@color/white"
-                        android:inputType="text"
-                        android:lines="1"
-                        android:maxLines="1"
-                        tools:ignore="SpeakableTextPresentCheck" />
-
-                </com.google.android.material.textfield.TextInputLayout>
-
-                <ImageView
-                    android:id="@+id/img_search"
-                    android:layout_width="60dp"
-                    android:layout_height="match_parent"
-                    android:padding="10dp"
-                    android:src="@drawable/ic_search"
-                    tools:ignore="ContentDescription" />
-
-
-            </LinearLayout>
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="250dp"
-            android:orientation="horizontal">
-
-
-
-
-            <LinearLayout
-                android:layout_width="320dp"
-                android:layout_height="300dp"
-                android:orientation="vertical">
-
-                <TextView
-                    android:layout_gravity="center"
-                    android:id="@+id/pokemon_id"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="TextView"
-                    android:textSize="30dp" />
-
-                <TextView
-                    android:layout_gravity="center"
-                    android:id="@+id/pokemon_name"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="TextView"
-                    android:textSize="30dp" />
-
-                <TextView
-                    android:layout_gravity="center"
-                    android:id="@+id/pokemon_height"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="TextView"
-                    android:textSize="30dp" />
-
-                <TextView
-                    android:layout_gravity="center"
-                    android:id="@+id/pokemon_weight"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="TextView"
-                    android:textSize="30dp" />
-
-                <TextView
-                    android:layout_gravity="center"
-                    android:id="@+id/pokemon_species"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="TextView"
-                    android:textSize="30dp" />
-
-            </LinearLayout>
             <ImageView
-                android:id="@+id/img_add_favourite"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:src="@drawable/addfavorite" />
+                android:id="@+id/img_random"
+                android:layout_width="wrap_content"
+                android:layout_height="120dp"
+                android:src="@drawable/cub"
+                tools:ignore="ContentDescription" />
 
+            <ImageView
+                android:id="@+id/img_favourite"
+                android:layout_width="wrap_content"
+                android:layout_height="120dp"
+                android:src="@drawable/unnamed"
+                tools:ignore="ContentDescription" />
 
+            <ImageView
+                android:id="@+id/img_list"
+                android:layout_width="wrap_content"
+                android:layout_height="120dp"
+                android:src="@drawable/list" />
         </LinearLayout>
-        <ImageView
-        android:id="@+id/pokemon_img"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:srcCompat="@drawable/pokemon" />
-    </LinearLayout>
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+</FrameLayout>

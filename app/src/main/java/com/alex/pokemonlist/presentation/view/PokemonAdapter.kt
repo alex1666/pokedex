@@ -7,17 +7,19 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.alex.pokemonlist.R
 import com.alex.pokemonlist.databinding.PokemonItemBinding
+import com.alex.pokemonlist.domain.model.Pokedex
 import com.alex.pokemonlist.domain.model.Pokemon
 import com.squareup.picasso.Picasso
 
 class PokemonAdapter(
-    private val list: List<Pokemon>,
+    private val list: List<Pokedex>,
     private val context: Context
 ) : RecyclerView.Adapter<PokemonAdapter.ViewHolder>() {
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private lateinit var binding: PokemonItemBinding
-        fun bindView(item: Pokemon) {
+        fun bindView(item: Pokedex) {
+
             binding = PokemonItemBinding.bind(itemView)
             binding.root
             with(binding) {
