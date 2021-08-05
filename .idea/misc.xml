@@ -3,6 +3,8 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/User/pokemonlist/app/src/main/res/drawable-v24/background_item.xml" value="0.11927083333333334" />
+        <entry key="..\:/Users/User/pokemonlist/app/src/main/res/drawable-v24/background_item_pokemon.xml" value="0.2703125" />
         <entry key="..\:/Users/User/pokemonlist/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.2175925925925926" />
         <entry key="..\:/Users/User/pokemonlist/app/src/main/res/drawable-v24/ic_poke_foreground.xml" value="0.2175925925925926" />
         <entry key="..\:/Users/User/pokemonlist/app/src/main/res/drawable-v24/ic_search.xml" value="0.26615384615384613" />
@@ -11,6 +13,7 @@
         <entry key="..\:/Users/User/pokemonlist/app/src/main/res/drawable/ic_launcher_background.xml" value="0.2175925925925926" />
         <entry key="..\:/Users/User/pokemonlist/app/src/main/res/drawable/poke.xml" value="0.14635416666666667" />
         <entry key="..\:/Users/User/pokemonlist/app/src/main/res/layout/activity_main.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/User/pokemonlist/app/src/main/res/layout/fragment_favourite.xml" value="0.1" />
         <entry key="..\:/Users/User/pokemonlist/app/src/main/res/layout/fragment_menu.xml" value="0.264" />
         <entry key="..\:/Users/User/pokemonlist/app/src/main/res/layout/fragment_wallpaper.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/User/pokemonlist/app/src/main/res/layout/pokemon_item.xml" value="0.264" />

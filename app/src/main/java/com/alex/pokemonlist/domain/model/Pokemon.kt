@@ -1,9 +1,17 @@
 package com.alex.pokemonlist.domain.model
 
-data class Pokemon(
-    val number: Int,
+import androidx.annotation.NonNull
+import androidx.room.Entity
+import androidx.room.PrimaryKey
+import com.google.gson.annotations.SerializedName
+@Entity(tableName = "pokemon")
+class Pokemon(
+    @SerializedName("number")
+    @PrimaryKey @NonNull val id: Int,
     val name:String,
     val height: String,
     val weight: String,
     val species: String,
+    @SerializedName("sprite")
+    val icon: String
 )

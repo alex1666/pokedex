@@ -1,53 +1,92 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/relativeLayoutBackground"
     android:layout_width="match_parent"
-    android:layout_height="150dp"
-    android:background="#0085EF"
-    android:orientation="horizontal">
+    android:layout_height="120dp"
+    android:layout_margin="8dp"
+    android:background="@drawable/background_item"
+    android:clickable="true"
+    android:clipToPadding="false"
+    android:focusable="true"
+    android:padding="8dp"
+    tools:backgroundTint="@color/lightBlue">
 
-    <LinearLayout
-        android:layout_width="150dp"
-        android:layout_height="300dp"
-        android:background="#0085EF"
-        android:orientation="vertical">
+    <TextView
+        android:id="@+id/pokemon_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        tools:text="Name" />
 
-        <TextView
-            android:id="@+id/pokemon_id"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="TextView" />
+    <TextView
+        android:id="@+id/pokemon_id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:alpha="0.25"
+        android:gravity="top"
+        android:text="#001"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        tools:text="#001" />
 
-        <TextView
-            android:id="@+id/pokemon_name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="TextView" />
 
-        <TextView
-            android:id="@+id/pokemon_height"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="TextView" />
+    <TextView
+        android:id="@+id/pokemon_species"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/pokemon_height"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="8dp"
+        android:background="@drawable/background_item"
+        android:backgroundTint="@color/teal"
+        android:paddingStart="8dp"
+        android:paddingEnd="8dp"
+        android:text="Grass"
+        android:textColor="@color/white"
+        android:textSize="14sp" />
 
-        <TextView
-            android:id="@+id/pokemon_weight"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="TextView" />
+    <TextView
+        android:id="@+id/pokemon_height"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/pokemon_weight"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="8dp"
+        android:background="@drawable/background_item"
+        android:backgroundTint="@color/teal"
+        android:paddingStart="8dp"
+        android:paddingEnd="8dp"
+        android:text="Height:"
+        android:textColor="@color/white"
+        android:textSize="14sp" />
 
-        <TextView
-            android:id="@+id/pokemon_species"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="TextView" />
+    <TextView
+        android:id="@+id/pokemon_weight"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/background_item"
+        android:backgroundTint="@color/teal"
+        android:paddingStart="8dp"
+        android:paddingEnd="8dp"
+        android:text="Weight:"
+        android:textColor="@color/white"
+        android:textSize="14sp" />
 
-    </LinearLayout>
 
     <ImageView
         android:id="@+id/pokemon_img"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:srcCompat="@drawable/pokemon" />
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:adjustViewBounds="true"
+        android:src="@drawable/pok1" />
 
-</LinearLayout>
+
+</RelativeLayout>
