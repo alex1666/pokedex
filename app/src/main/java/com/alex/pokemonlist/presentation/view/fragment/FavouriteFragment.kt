@@ -1,4 +1,4 @@
-package com.alex.pokemonlist.presentation.view
+package com.alex.pokemonlist.presentation.view.fragment
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.GridLayoutManager
 import com.alex.pokemonlist.databinding.FragmentFavouriteBinding
+import com.alex.pokemonlist.presentation.view.adapter.PokemonAdapter
 import com.alex.pokemonlist.presentation.viewmodel.FavouriteViewModel
 import dagger.hilt.android.AndroidEntryPoint
 

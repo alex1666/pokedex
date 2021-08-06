@@ -2,7 +2,6 @@ package com.alex.pokemonlist.data.repository
 
 import com.alex.pokemonlist.data.source.local.PokedexDatabase
 import com.alex.pokemonlist.data.source.remote.RetrofitService
-import com.alex.pokemonlist.domain.model.Poke
 import com.alex.pokemonlist.domain.model.Pokemon
 import com.alex.pokemonlist.domain.repository.PokemonRepository
 import io.reactivex.Single

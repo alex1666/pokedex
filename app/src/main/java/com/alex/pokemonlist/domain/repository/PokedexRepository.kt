@@ -1,11 +1,10 @@
 package com.alex.pokemonlist.domain.repository
 
 import com.alex.pokemonlist.domain.model.Pokedex
-import com.alex.pokemonlist.domain.model.Pokemon
 import io.reactivex.Single
 
 interface PokedexRepository {
-    fun getPokedex(pokemonName:String): Single<List<Pokedex>>
-    fun addPokedex( pokedex:List<Pokedex>)
+    fun getPokedex(pokemonName: String): Single<List<Pokedex>>
+    fun addPokedex(pokedex: List<Pokedex>)
     fun allPokedex(): List<Pokedex>
 }

@@ -1,4 +1,4 @@
-package com.alex.pokemonlist.presentation.view
+package com.alex.pokemonlist.presentation.view.adapter
 
 import com.alex.pokemonlist.databinding.PokemonItemBinding
 import com.alex.pokemonlist.domain.model.Pokemon

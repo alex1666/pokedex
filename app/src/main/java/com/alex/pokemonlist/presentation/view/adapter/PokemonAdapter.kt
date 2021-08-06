@@ -1,4 +1,4 @@
-package com.alex.pokemonlist.presentation.view
+package com.alex.pokemonlist.presentation.view.adapter
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -8,12 +8,11 @@ import androidx.recyclerview.widget.RecyclerView
 import com.alex.pokemonlist.R
 import com.alex.pokemonlist.databinding.PokemonItemBinding
 import com.alex.pokemonlist.domain.model.Pokedex
-import com.alex.pokemonlist.domain.model.Pokemon
 import com.squareup.picasso.Picasso
 
 class PokemonAdapter(
     private val list: List<Pokedex>,
-    private val context: Context
+    private val context: Context,
 ) : RecyclerView.Adapter<PokemonAdapter.ViewHolder>() {
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {

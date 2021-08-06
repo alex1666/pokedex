@@ -1,4 +1,4 @@
-package com.alex.pokemonlist.presentation.view
+package com.alex.pokemonlist.presentation.view.fragment
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -32,14 +32,14 @@ class MenuFragment : Fragment() {
     }
 
     private fun initViews() {
-        with(binding){
-            imgRandom.setOnClickListener{
+        with(binding) {
+            imgRandom.setOnClickListener {
                 it.findNavController().navigate(R.id.action_menuFragment_to_searchFragment)
             }
-            imgFavourite.setOnClickListener{
+            imgFavourite.setOnClickListener {
                 it.findNavController().navigate(R.id.action_menuFragment_to_favouriteFragment)
             }
-            imgList.setOnClickListener{
+            imgList.setOnClickListener {
                 it.findNavController().navigate(R.id.action_menuFragment_to_listFragment)
             }
         }

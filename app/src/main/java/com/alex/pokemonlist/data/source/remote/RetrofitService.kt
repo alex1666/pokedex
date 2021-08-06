@@ -1,10 +1,8 @@
 package com.alex.pokemonlist.data.source.remote
 
 
-import com.alex.pokemonlist.domain.model.Poke
 import com.alex.pokemonlist.domain.model.Pokedex
 import com.alex.pokemonlist.domain.model.Pokemon
-import com.alex.pokemonlist.util.Constants.urlPokedex
 import io.reactivex.Single
 import retrofit2.http.GET
 import retrofit2.http.Path
