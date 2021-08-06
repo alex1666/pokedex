@@ -11,16 +11,8 @@ class PokemonUseCaseImpl
 @Inject
 constructor(private val repository: PokemonRepository) :
     PokemonUseCase {
-    override fun pokemonUseCase(): Single<Poke> {
+    override fun pokemonUseCase(): Single<List<Pokemon>> {
         return repository.getPokemon()
-    }
-
-    override fun addPokemon(pokedex:List<Pokemon>) {
-        return repository.addPokemon(pokedex)
-    }
-
-    override fun allPokemon(): List<Pokemon> {
-        return repository.allPokemon()
     }
 
 }

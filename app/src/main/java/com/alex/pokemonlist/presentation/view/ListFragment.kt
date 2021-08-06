@@ -8,20 +8,18 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.GridLayoutManager
 import com.alex.pokemonlist.databinding.FragmentListBinding
-import com.alex.pokemonlist.domain.model.Pokedex
-import com.alex.pokemonlist.domain.model.Pokemon
-import com.alex.pokemonlist.presentation.viewmodel.PokedexViewModel
+import com.alex.pokemonlist.presentation.viewmodel.ListViewModel
 import com.livermor.delegateadapter.delegate.CompositeDelegateAdapter
 import dagger.hilt.android.AndroidEntryPoint
 
 
 @AndroidEntryPoint
-class PokedexFragment : Fragment() {
-    val pokedexViewModel: PokedexViewModel by viewModels()
+class ListFragment : Fragment() {
+    val pokedexViewModel: ListViewModel by viewModels()
     private lateinit var binding: FragmentListBinding
     private val adapter by lazy {
         CompositeDelegateAdapter(
-            PokedexAdapter()
+            ListAdapter()
         )
     }
     override fun onCreateView(
@@ -36,16 +34,16 @@ class PokedexFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         pokedexViewModel.refreshData()
+        setObserve()
+
+        binding.recyclerView.layoutManager = GridLayoutManager(context, 2)
         binding.recyclerView.adapter = adapter
-       setObserve()
     }
 
-
-
     private fun setObserve() {
-        pokedexViewModel.getPokedexModel().observe(viewLifecycleOwner, { PokedexModel ->
-            PokedexModel?.let {
-                adapter.swapData(it.pokemon)
+        pokedexViewModel.getPokemonModel().observe(viewLifecycleOwner, { PokemonModel ->
+            PokemonModel?.let {
+                adapter.swapData(it)
             }
         })
     }

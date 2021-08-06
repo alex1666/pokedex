@@ -41,7 +41,7 @@
         tools:layout="@layout/fragment_favourite" />
     <fragment
         android:id="@+id/listFragment"
-        android:name="com.alex.pokemonlist.presentation.view.PokedexFragment"
+        android:name="com.alex.pokemonlist.presentation.view.ListFragment"
         android:label="fragment_list"
         tools:layout="@layout/fragment_list" />
 </navigation>

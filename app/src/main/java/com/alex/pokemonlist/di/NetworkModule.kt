@@ -3,7 +3,6 @@ package com.alex.pokemonlist.di
 import com.alex.pokemonlist.data.repository.PokedexRepositoryImpl
 import com.alex.pokemonlist.data.repository.PokemonRepositoryImpl
 import com.alex.pokemonlist.data.source.local.PokedexDatabase
-import com.alex.pokemonlist.data.source.local.PokemonDatabase
 import com.alex.pokemonlist.data.source.remote.RetrofitService
 import com.alex.pokemonlist.domain.repository.PokedexRepository
 import com.alex.pokemonlist.domain.repository.PokemonRepository
@@ -12,7 +11,6 @@ import com.alex.pokemonlist.domain.usecase.PokedexUseCaseImpl
 import com.alex.pokemonlist.domain.usecase.PokemonUseCase
 import com.alex.pokemonlist.domain.usecase.PokemonUseCaseImpl
 import com.alex.pokemonlist.util.Constants.baseUrl
-import com.alex.pokemonlist.util.Constants.urlPokedex
 
 import com.google.gson.Gson
 import dagger.Module
@@ -78,7 +76,7 @@ class NetworkModule {
     @Singleton
     @Provides
     fun providePokemonRepository(
-        database: PokemonDatabase,
+        database: PokedexDatabase,
         retrofitService: RetrofitService,
     ): PokemonRepository {
         return PokemonRepositoryImpl(database, retrofitService)

@@ -12,11 +12,11 @@ class PokedexRepositoryImpl
 constructor(private val database: PokedexDatabase, private val retrofitService: RetrofitService) :
     PokedexRepository {
 
-    override fun getPokedex(pokemonName:String): Single<List<Pokedex>> {
+    override fun getPokedex(pokemonName: String): Single<List<Pokedex>> {
         return retrofitService.getPokedex(pokemonName)
     }
 
-    override fun addPokedex(pokedex:List<Pokedex>) {
+    override fun addPokedex(pokedex: List<Pokedex>) {
         database.pokedexDAO().add(pokedex)
     }
 

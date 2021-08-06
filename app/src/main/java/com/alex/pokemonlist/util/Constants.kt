@@ -10,7 +10,6 @@ object Constants {
     const val urlPokedex="https://raw.githubusercontent.com/Biuni/PokemonGO-Pokedex/master/pokedex.json"
     const val wallpaperTime = 1000
     const val Id="id:"
-    const val num="#"
     const val name="name:"
     const val height="height:"
     const val species="species:"
