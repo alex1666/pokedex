@@ -8,13 +8,13 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.GridLayoutManager
 import com.alex.pokemonlist.databinding.FragmentFavouriteBinding
-import com.alex.pokemonlist.presentation.viewmodel.PokemonViewModel
+import com.alex.pokemonlist.presentation.viewmodel.FavouriteViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 
 @AndroidEntryPoint
 class FavouriteFragment : Fragment() {
-    private val pokemonViewModel: PokemonViewModel by viewModels()
+    private val favouritePokemonViewModel: FavouriteViewModel by viewModels()
     private lateinit var binding: FragmentFavouriteBinding
 
     override fun onCreateView(
@@ -28,10 +28,13 @@ class FavouriteFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        initViews()
+    }
+    private fun initViews(){
         val recyclerView = binding.recyclerView
         val layoutManager = GridLayoutManager(context, 2)
         recyclerView.layoutManager = layoutManager
-        recyclerView.adapter = PokemonAdapter(pokemonViewModel.getListPokemon(), view.context)
+        recyclerView.adapter = view?.let { PokemonAdapter(favouritePokemonViewModel.getListPokemon(), it.context) }
     }
 
 }
