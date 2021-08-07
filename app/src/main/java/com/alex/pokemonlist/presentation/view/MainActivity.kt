@@ -1,15 +1,12 @@
 package com.alex.pokemonlist.presentation.view
 
 import android.os.Bundle
-import android.os.Handler
-import android.view.View
 import androidx.activity.viewModels
 import androidx.fragment.app.FragmentActivity
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import com.alex.pokemonlist.R
 import com.alex.pokemonlist.presentation.viewmodel.ActivityViewModel
-import com.alex.pokemonlist.util.Constants.wallpaperTime
 import dagger.hilt.android.AndroidEntryPoint
 
 
@@ -23,6 +20,7 @@ class MainActivity : FragmentActivity() {
         navController = Navigation.findNavController(this, R.id.nav_host_fragment);
 
     }
+
     override fun onBackPressed() {
         super.onBackPressed()
     }

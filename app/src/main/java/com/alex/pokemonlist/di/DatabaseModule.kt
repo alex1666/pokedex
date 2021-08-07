@@ -1,15 +1,13 @@
 package com.alex.pokemonlist.di
 
-import dagger.Provides
-import androidx.room.Room
 import android.app.Application
-import com.alex.pokemonlist.data.source.local.PokemonDatabase
+import androidx.room.Room
 import com.alex.pokemonlist.data.source.local.PokedexDatabase
 import com.alex.pokemonlist.data.source.local.dao.PokedexDAO
 import dagger.Module
+import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
-import com.alex.pokemonlist.data.source.local.dao.PokemonDAO
 import javax.inject.Singleton
 
 
@@ -19,31 +17,17 @@ class DatabaseModule {
 
     @Provides
     @Singleton
-    internal fun providePokemonDatabase(application: Application): PokemonDatabase {
+    internal fun providePokemonDatabase(application: Application): PokedexDatabase {
         return Room.databaseBuilder(
             application,
-            PokemonDatabase::class.java,
+            PokedexDatabase::class.java,
             "pokemonlist"
         ).allowMainThreadQueries().build()
     }
 
     @Provides
-    @Singleton
-    internal fun providePokedexDatabase(application: Application): PokedexDatabase {
-        return Room.databaseBuilder(
-            application,
-            PokedexDatabase::class.java,
-            "pokedex"
-        ).allowMainThreadQueries().build()
+    internal fun providePokedexDAO(pokemonDatabase: PokedexDatabase): PokedexDAO {
+        return pokemonDatabase.pokedexDAO()
     }
 
-
-    @Provides
-    internal fun providePokemonDAO(pokemonDatabase: PokemonDatabase): PokemonDAO {
-        return pokemonDatabase.pokemonDAO()
-    }
-    @Provides
-    internal fun providePokedexDAO(pokedex: PokedexDatabase): PokedexDAO {
-        return pokedex.pokedexDAO()
-    }
 }

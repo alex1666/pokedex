@@ -1,4 +1,4 @@
-package com.alex.pokemonlist.presentation.view
+package com.alex.pokemonlist.presentation.view.fragment
 
 import android.annotation.SuppressLint
 import android.os.Bundle
