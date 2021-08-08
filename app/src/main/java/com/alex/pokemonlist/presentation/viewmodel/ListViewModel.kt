@@ -13,18 +13,18 @@ import javax.inject.Inject
 class ListViewModel @Inject
 constructor(private val pokemonUseCase: PokemonUseCase) :
     BaseViewModel() {
-    private val pokedex = MutableLiveData<List<Pokemon>>()
+    private val listPokemon = MutableLiveData<List<Pokemon>>()
 
-    fun getPokemonModel(): LiveData<List<Pokemon>> = pokedex
+    fun getPokemonModel(): LiveData<List<Pokemon>> = listPokemon
 
     fun refreshData() {
-        getPokedex()
+        getListPokemon()
     }
 
-    private fun getPokedex() {
+    private fun getListPokemon() {
         pokemonUseCase.pokemonUseCase()
             .subscribeOn(Schedulers.io())
-            .subscribe({ pokedex.postValue(it) },
+            .subscribe({ listPokemon.postValue(it) },
                 { error ->
                     Log.e(error::class.simpleName, error.message.toString())
                 })

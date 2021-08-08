@@ -22,6 +22,9 @@ class WrapperFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        getMenu()
+    }
+    private fun getMenu(){
         Handler().postDelayed({
             findNavController().navigate(R.id.action_wrapperFragment_to_menuFragment)
         }, Constants.wallpaperTime.toLong())

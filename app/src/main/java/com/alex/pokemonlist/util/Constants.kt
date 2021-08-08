@@ -7,7 +7,6 @@ object Constants {
     //https://pokeapi.co/api/v2/pokemon/1/
 
     const val baseUrl = "https://pokeapi.glitch.me/v1/pokemon/"
-    const val urlPokedex="https://raw.githubusercontent.com/Biuni/PokemonGO-Pokedex/master/pokedex.json"
     const val wallpaperTime = 1000
     const val Id="id:"
     const val name="name:"

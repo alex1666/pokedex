@@ -5,16 +5,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
 import androidx.navigation.findNavController
 import com.alex.pokemonlist.R
 import com.alex.pokemonlist.databinding.FragmentMenuBinding
-import com.alex.pokemonlist.presentation.viewmodel.MenuViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class MenuFragment : Fragment() {
-    private val pokemonViewModel: MenuViewModel by viewModels()
     private lateinit var binding: FragmentMenuBinding
 
     override fun onCreateView(

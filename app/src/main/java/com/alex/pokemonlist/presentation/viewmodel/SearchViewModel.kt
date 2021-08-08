@@ -16,7 +16,7 @@ open class SearchViewModel
 constructor(private val pokedexUseCase: PokedexUseCase) :
     BaseViewModel() {
     private val pokedex = MutableLiveData<List<Pokedex>>()
-    fun getPokemonModel(): LiveData<List<Pokedex>> = pokedex
+    fun getPokedexModel(): LiveData<List<Pokedex>> = pokedex
     fun refreshData(pokemonName: String) {
         getPokemon(pokemonName)
     }

@@ -3,10 +3,13 @@ package com.alex.pokemonlist.domain.model
 import androidx.annotation.NonNull
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import androidx.room.TypeConverters
+import com.alex.pokemonlist.util.MyCustomTypeConverter
 import com.google.gson.annotations.SerializedName
 
 
 @Entity(tableName = "pokedex")
+@TypeConverters(MyCustomTypeConverter::class)
 class Pokedex(
     @SerializedName("number")
     @PrimaryKey @NonNull
@@ -17,4 +20,5 @@ class Pokedex(
     val species: String,
     @SerializedName("sprite")
     val icon: String,
+    val family: Family? = null
 )

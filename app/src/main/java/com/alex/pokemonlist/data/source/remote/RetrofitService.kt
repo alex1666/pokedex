@@ -9,8 +9,7 @@ import retrofit2.http.Path
 
 interface RetrofitService {
 
-    //https://pokeapi.co/api/v2/pokemon/1/
-
+    //https://pokeapi.glitch.me/v1/pokemon/1
     @GET("{id}")
     fun getPokedex(
         @Path("id") id: String,

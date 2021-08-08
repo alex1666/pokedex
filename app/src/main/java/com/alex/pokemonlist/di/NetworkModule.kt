@@ -11,7 +11,6 @@ import com.alex.pokemonlist.domain.usecase.PokedexUseCaseImpl
 import com.alex.pokemonlist.domain.usecase.PokemonUseCase
 import com.alex.pokemonlist.domain.usecase.PokemonUseCaseImpl
 import com.alex.pokemonlist.util.Constants.baseUrl
-
 import com.google.gson.Gson
 import dagger.Module
 import dagger.Provides

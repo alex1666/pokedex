@@ -4,7 +4,7 @@ import com.alex.pokemonlist.databinding.PokemonItemBinding
 import com.alex.pokemonlist.domain.model.Pokemon
 import com.livermor.delegateadapter.delegate.ViewBindingDelegateAdapter
 
-class ListAdapter :
+class ListPokemonAdapter :
     ViewBindingDelegateAdapter<Pokemon, PokemonItemBinding>(PokemonItemBinding::inflate) {
     override fun isForViewType(item: Any) = item is Pokemon
 
@@ -15,9 +15,9 @@ class ListAdapter :
         pokemonName.text = item.name
         pokemonHeight.text = item.height
         pokemonWeight.text = item.weight
-        pokemonSpecies.text = item.typeofpokemon.toString()
+        pokemonSpecies.text = item.typeOfPokemon.toString()
         com.squareup.picasso.Picasso.get()
-            .load(item.imageurl)
+            .load(item.imageUrl)
             .fit()
             .into(pokemonImg)
     }
