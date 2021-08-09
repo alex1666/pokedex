@@ -11,7 +11,7 @@ class ListPokemonAdapter :
     override fun Pokemon.getItemId() = hashCode()
 
     override fun PokemonItemBinding.onBind(item: Pokemon) {
-        pokemonId.text = item.id
+        pokemonId.text = item.id.toString()
         pokemonName.text = item.name
         pokemonHeight.text = item.height
         pokemonWeight.text = item.weight

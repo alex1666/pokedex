@@ -10,11 +10,27 @@ import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
 @HiltViewModel
-class ListViewModel @Inject
+class MenuViewModel
+@Inject
 constructor(private val pokemonUseCase: PokemonUseCase) :
     BaseViewModel() {
-    fun allPokemon():List<Pokemon>{
-        return pokemonUseCase.all()
+
+    fun refreshData() {
+        getListPokemon()
+    }
+
+    private fun addDao(Pokemon: List<Pokemon>) {
+        pokemonUseCase.add(Pokemon)
+    }
+
+    private fun getListPokemon() {
+        pokemonUseCase.pokemonUseCase()
+            .subscribeOn(Schedulers.io())
+            .subscribe({ addDao(it) },
+                { error ->
+                    Log.e(error::class.simpleName, error.message.toString())
+                })
+            .untilCleared()
     }
 
 

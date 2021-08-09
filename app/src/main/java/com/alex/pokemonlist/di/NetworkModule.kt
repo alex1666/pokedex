@@ -1,13 +1,10 @@
 package com.alex.pokemonlist.di
 
-import com.alex.pokemonlist.data.repository.PokedexRepositoryImpl
 import com.alex.pokemonlist.data.repository.PokemonRepositoryImpl
-import com.alex.pokemonlist.data.source.local.PokedexDatabase
+import com.alex.pokemonlist.data.source.local.FavouriteDatabase
+import com.alex.pokemonlist.data.source.local.PokemonDatabase
 import com.alex.pokemonlist.data.source.remote.RetrofitService
-import com.alex.pokemonlist.domain.repository.PokedexRepository
 import com.alex.pokemonlist.domain.repository.PokemonRepository
-import com.alex.pokemonlist.domain.usecase.PokedexUseCase
-import com.alex.pokemonlist.domain.usecase.PokedexUseCaseImpl
 import com.alex.pokemonlist.domain.usecase.PokemonUseCase
 import com.alex.pokemonlist.domain.usecase.PokemonUseCaseImpl
 import com.alex.pokemonlist.util.Constants.baseUrl
@@ -27,22 +24,12 @@ class NetworkModule {
 
     @Provides
     @Singleton
-    fun providesRetrofitPokedex(
-        gsonConverterFactory: GsonConverterFactory,
-        rxJava2CallAdapterFactory: RxJava2CallAdapterFactory,
-    ): Retrofit {
-        return Retrofit.Builder()
-            .baseUrl(baseUrl)
-            .addConverterFactory(gsonConverterFactory)
-            .addCallAdapterFactory(rxJava2CallAdapterFactory)
-            .build()
-    }
-
     fun providesRetrofitPokemon(
         gsonConverterFactory: GsonConverterFactory,
         rxJava2CallAdapterFactory: RxJava2CallAdapterFactory,
     ): Retrofit {
         return Retrofit.Builder()
+            .baseUrl(baseUrl)
             .addConverterFactory(gsonConverterFactory)
             .addCallAdapterFactory(rxJava2CallAdapterFactory)
             .build()
@@ -75,31 +62,17 @@ class NetworkModule {
     @Singleton
     @Provides
     fun providePokemonRepository(
-        database: PokedexDatabase,
+        database: PokemonDatabase,
+        favouriteDatabase: FavouriteDatabase,
         retrofitService: RetrofitService,
     ): PokemonRepository {
-        return PokemonRepositoryImpl(database, retrofitService)
+        return PokemonRepositoryImpl(database, favouriteDatabase,retrofitService)
     }
 
     @Singleton
     @Provides
     fun providePokemonUseCase(pokemonRepository: PokemonRepository): PokemonUseCase {
         return PokemonUseCaseImpl(pokemonRepository)
-    }
-
-    @Singleton
-    @Provides
-    fun providePokedexRepository(
-        database: PokedexDatabase,
-        retrofitService: RetrofitService,
-    ): PokedexRepository {
-        return PokedexRepositoryImpl(database, retrofitService)
-    }
-
-    @Singleton
-    @Provides
-    fun providePokedexUseCase(pokedexRepository: PokedexRepository): PokedexUseCase {
-        return PokedexUseCaseImpl(pokedexRepository)
     }
 
 

@@ -16,7 +16,7 @@ import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class ListFragment : Fragment() {
-    val listViewModel: ListViewModel by viewModels()
+    private val listViewModel: ListViewModel by viewModels()
     private lateinit var binding: FragmentListBinding
     private val adapter by lazy {
         CompositeDelegateAdapter(
@@ -35,22 +35,14 @@ class ListFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        listViewModel.refreshData()
-        setObserve()
         initViews()
     }
 
     private fun initViews() {
         binding.recyclerView.layoutManager = GridLayoutManager(context, 2)
         binding.recyclerView.adapter = adapter
+        adapter.swapData(listViewModel.allPokemon())
     }
 
-    private fun setObserve() {
-        listViewModel.getPokemonModel().observe(viewLifecycleOwner, { PokemonModel ->
-            PokemonModel?.let {
-                adapter.swapData(it)
-            }
-        })
-    }
 
 }

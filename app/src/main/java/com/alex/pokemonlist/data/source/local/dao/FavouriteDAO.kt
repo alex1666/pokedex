@@ -4,16 +4,18 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import com.alex.pokemonlist.domain.model.Pokedex
+import com.alex.pokemonlist.domain.model.Favourite
+import com.alex.pokemonlist.domain.model.Pokemon
 
 
 @Dao
-interface PokedexDAO {
+interface FavouriteDAO {
 
-    @Query("SELECT * FROM pokedex")
-    fun all(): List<Pokedex>
+    @Query("SELECT * FROM favourite")
+    fun all(): List<Favourite>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun add(pokemon: List<Pokedex>)
+    fun add(favourite: Favourite)
+
 
 }

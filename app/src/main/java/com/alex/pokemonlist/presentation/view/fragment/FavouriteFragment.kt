@@ -40,7 +40,7 @@ class FavouriteFragment : Fragment() {
 
     private fun initViews() {
         binding.recyclerView.layoutManager = GridLayoutManager(context, 2)
-        adapter.swapData(favouritePokemonViewModel.getListPokemon())
+        adapter.swapData(favouritePokemonViewModel.getListFavouritePokemon())
         binding.recyclerView.adapter = adapter
     }
 

@@ -73,28 +73,14 @@
                 tools:ignore="ContentDescription" />
 
         </LinearLayout>
-
-
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerViewPokemon"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingStart="8dp"
-            android:background="@color/white"
-            android:paddingEnd="8dp"
-            app:layoutManager="GridLayoutManager"
-            tools:itemCount="1"
-            tools:listitem="@layout/pokemon_item"
-            tools:spanCount="1" />
         <TextView
         android:id="@+id/pokemon_family"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:text="Evolution"
+        android:text=""
         android:textColor="@color/black"
-        android:textSize="30dp" />
+        android:textSize="28dp" />
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerViewEvolution"
             android:layout_width="match_parent"

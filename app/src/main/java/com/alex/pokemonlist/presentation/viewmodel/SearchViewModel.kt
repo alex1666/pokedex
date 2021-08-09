@@ -1,39 +1,29 @@
 package com.alex.pokemonlist.presentation.viewmodel
 
 
-import android.util.Log
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import com.alex.pokemonlist.domain.model.Pokedex
-import com.alex.pokemonlist.domain.usecase.PokedexUseCase
+import com.alex.pokemonlist.domain.model.Favourite
+import com.alex.pokemonlist.domain.model.Pokemon
+import com.alex.pokemonlist.domain.usecase.PokemonUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
-import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
 @HiltViewModel
 open class SearchViewModel
 @Inject
-constructor(private val pokedexUseCase: PokedexUseCase) :
+constructor(private val pokemonUseCase: PokemonUseCase) :
     BaseViewModel() {
-    private val pokedex = MutableLiveData<List<Pokedex>>()
-    fun getPokedexModel(): LiveData<List<Pokedex>> = pokedex
-    fun refreshData(pokemonName: String) {
-        getPokemon(pokemonName)
+
+    fun getPokemonById(id: String): List<Pokemon> {
+        return pokemonUseCase.getById(id)
     }
-
-    fun addPokedex(pokedex: List<Pokedex>) {
-        pokedexUseCase.addPokedex(pokedex)
-
+    fun getPokemonByName(name: String): List<Pokemon> {
+        return pokemonUseCase.getByName(name)
     }
-
-    private fun getPokemon(pokemonName: String) {
-        pokedexUseCase.pokedexUseCase(pokemonName)
-            .subscribeOn(Schedulers.io())
-            .subscribe({ pokedex.postValue(it) },
-                { error ->
-                    Log.e(error::class.simpleName, error.message.toString())
-                })
-            .untilCleared()
+    fun getEvolution(id: List<String>): List<Pokemon> {
+        return pokemonUseCase.getByIds(id)
+    }
+    fun addFavourite(favourite: Favourite){
+        return pokemonUseCase.addFavourite(favourite)
     }
 }
 
