@@ -13,9 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        tools:ignore="MissingConstraints"><![CDATA[>
-
-        ]]>
+        tools:ignore="MissingConstraints">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -56,90 +54,44 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="250dp"
+            android:layout_height="100dp"
             android:orientation="horizontal"
             tools:ignore="MissingConstraints">
 
-            <LinearLayout
-                android:layout_width="280dp"
-                android:layout_height="250dp"
-                android:orientation="vertical"
-                tools:ignore="MissingConstraints">
 
-                <TextView
-                    android:id="@+id/pokemon_id"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:text="TextView"
-                    android:textColor="@color/black"
-                    android:textSize="30dp" />
+            <ImageView
+                android:id="@+id/img_add_favourite"
+                android:layout_width="200dp"
+                android:layout_height="100dp"
+                android:src="@drawable/addfavorite" />
 
-                <TextView
-                    android:id="@+id/pokemon_name"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:text="TextView"
-                    android:textColor="@color/black"
-                    android:textSize="30dp" />
+            <ImageView
+                android:id="@+id/img_random"
+                android:layout_width="200dp"
+                android:layout_height="100dp"
+                android:src="@drawable/cub"
+                tools:ignore="ContentDescription" />
 
-                <TextView
-                    android:id="@+id/pokemon_height"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:text="TextView"
-                    android:textColor="@color/black"
-                    android:textSize="30dp" />
-
-                <TextView
-                    android:id="@+id/pokemon_weight"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:text="TextView"
-                    android:textColor="@color/black"
-                    android:textSize="30dp" />
-
-                <TextView
-                    android:id="@+id/pokemon_species"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:text="TextView"
-                    android:textColor="@color/black"
-                    android:textSize="30dp" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="280dp"
-                android:layout_height="250dp"
-                android:orientation="vertical"
-                tools:ignore="MissingConstraints">
-
-                <ImageView
-                    android:id="@+id/img_add_favourite"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/addfavorite" />
-
-                <ImageView
-                    android:id="@+id/img_random"
-                    android:layout_width="120dp"
-                    android:layout_height="match_parent"
-                    android:src="@drawable/cub"
-                    tools:ignore="ContentDescription" />
-
-            </LinearLayout>
         </LinearLayout>
-
-        <ImageView
-            android:id="@+id/pokemon_img"
-            android:layout_width="wrap_content"
+        <TextView
+        android:id="@+id/pokemon_family"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text=""
+        android:textColor="@color/black"
+        android:textSize="28dp" />
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerViewPokemon"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:srcCompat="@drawable/pok1" />
+            android:paddingStart="8dp"
+            android:background="@color/white"
+            android:paddingEnd="8dp"
+            app:layoutManager="GridLayoutManager"
+            tools:itemCount="1"
+            tools:listitem="@layout/pokemon_item"
+            tools:spanCount="1" />
 
     </LinearLayout>
 

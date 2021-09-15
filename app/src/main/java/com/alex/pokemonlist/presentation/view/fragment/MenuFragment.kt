@@ -14,8 +14,8 @@ import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class MenuFragment : Fragment() {
-    private val pokemonViewModel: MenuViewModel by viewModels()
     private lateinit var binding: FragmentMenuBinding
+    private val menuViewModel: MenuViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -32,6 +32,7 @@ class MenuFragment : Fragment() {
     }
 
     private fun initViews() {
+        menuViewModel.refreshData()
         with(binding) {
             imgRandom.setOnClickListener {
                 it.findNavController().navigate(R.id.action_menuFragment_to_searchFragment)

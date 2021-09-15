@@ -1,29 +1,31 @@
 package com.alex.pokemonlist.presentation.view.fragment
 
-import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.recyclerview.widget.GridLayoutManager
 import com.alex.pokemonlist.databinding.FragmentSearchBinding
-import com.alex.pokemonlist.domain.model.Pokedex
+import com.alex.pokemonlist.presentation.view.adapter.PokemonAdapter
 import com.alex.pokemonlist.presentation.viewmodel.SearchViewModel
-import com.alex.pokemonlist.util.Constants.Id
-import com.alex.pokemonlist.util.Constants.height
-import com.alex.pokemonlist.util.Constants.name
-import com.alex.pokemonlist.util.Constants.species
-import com.alex.pokemonlist.util.Constants.weight
-import com.bumptech.glide.Glide
+import com.livermor.delegateadapter.delegate.CompositeDelegateAdapter
 import dagger.hilt.android.AndroidEntryPoint
 
 
 @AndroidEntryPoint
 class SearchFragment : Fragment() {
-    var pokeName: String = "1"
+    var pokeName: String = "#001"
     private val searchViewModel: SearchViewModel by viewModels()
     private lateinit var binding: FragmentSearchBinding
+
+    private val adapterPokemon by lazy {
+        CompositeDelegateAdapter(
+            PokemonAdapter()
+        )
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -35,57 +37,66 @@ class SearchFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        searchViewModel.refreshData(pokeName)
+        init()
         initViews()
-        setObserve()
     }
 
     private fun initViews() {
         with(binding) {
+
             imgAddFavourite.setOnClickListener {
-                add()
+                searchViewModel.addFavourite(pokeName)
             }
             imgSearch.setOnClickListener {
                 pokeName = searchPokemon.text.toString()
-                searchViewModel.refreshData(pokeName)
+                try {
+                    searchViewModel.getPokemonByName(pokeName)
+                    setPokemonByName()
+
+                } catch (e: IndexOutOfBoundsException) {
+                    null
+                }
+                try {
+                    toNumber()
+                    searchViewModel.getPokemonById(pokeName)
+                    setPokemonById()
+                } catch (e: IndexOutOfBoundsException) {
+                    null
+                }
+
             }
+
             imgRandom.setOnClickListener {
-                pokeName = (0..807).random().toString()
-                searchViewModel.refreshData(pokeName)
+                pokeName = (0..809).random().toString()
+                toNumber()
+                setPokemonById()
             }
         }
     }
 
-    @SuppressLint("SetTextI18n")
-    private fun setPokemon(it: List<Pokedex>) {
-        with(binding) {
-            pokemonName.text = name + it.get(0).name
-            pokemonId.text = Id + it.get(0).id.toString()
-            pokemonHeight.text = height + it.get(0).height
-            pokemonWeight.text = weight + it.get(0).weight
-            pokemonSpecies.text = species + it.get(0).species
-            Glide.with(this@SearchFragment)
-                .load(it.get(0).icon)
-                .into(pokemonImg)
-        }
+
+    private fun init() {
+        binding.recyclerViewPokemon.layoutManager = GridLayoutManager(context, 1)
+        binding.recyclerViewPokemon.adapter = adapterPokemon
+        setPokemonById()
     }
 
-    private fun setObserve() {
-        searchViewModel.getPokemonModel().observe(viewLifecycleOwner, { PokemonModel ->
-            PokemonModel?.let {
-                setPokemon(it)
-            }
-        })
+    private fun setPokemonById() {
+            adapterPokemon.swapData(searchViewModel.getPokemonById(pokeName))
     }
 
-    private fun add() {
-        searchViewModel.getPokemonModel().observe(viewLifecycleOwner, { PokedexModel ->
-            PokedexModel?.let {
-                searchViewModel.addPokedex(PokedexModel)
-            }
-        })
+    private fun setPokemonByName() {
+            adapterPokemon.swapData(searchViewModel.getPokemonByName(pokeName))
     }
 
+    private fun toNumber() {
+        if (pokeName.length == 1)
+            pokeName = "#00$pokeName"
+        if (pokeName.length == 2)
+            pokeName = "#0$pokeName"
+        if (pokeName.length == 3)
+            pokeName = "#$pokeName"
+    }
 
 }
 

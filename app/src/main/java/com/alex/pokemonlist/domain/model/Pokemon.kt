@@ -1,14 +1,24 @@
 package com.alex.pokemonlist.domain.model
 
+import androidx.annotation.NonNull
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 import androidx.room.TypeConverters
-import com.alex.pokemonlist.util.ListStringConverter
+import com.alex.pokemonlist.util.MyCustomTypeConverter
+import com.google.gson.annotations.SerializedName
 
-@TypeConverters(ListStringConverter::class)
+@Entity(tableName = "pokemon")
+@TypeConverters(MyCustomTypeConverter::class)
 class Pokemon(
+    @PrimaryKey() @NonNull
     val id: String,
     val name: String,
     val height: String,
     val weight: String,
-    val typeofpokemon: List<String>? = null,
-    val imageurl: String,
+    @SerializedName("typeofpokemon")
+    val typeOfPokemon: List<String>? = null,
+    @SerializedName("imageurl")
+    val imageUrl: String,
+    val favourite: Boolean = false,
+    val evolutions: List<String>? = null,
 )

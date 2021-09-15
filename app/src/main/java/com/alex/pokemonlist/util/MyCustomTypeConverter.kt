@@ -5,17 +5,18 @@ import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import java.lang.reflect.Type
 
-class ListStringConverter {
+class  MyCustomTypeConverter {
     private val gson = Gson()
-    private val type: Type = object : TypeToken<List<String>>() {}.type
-
+    private val typeString: Type = object : TypeToken<List<String>>() {}.type
     @TypeConverter
+
     fun fromString(json: String?): List<String> {
-        return gson.fromJson(json, type)
+        return gson.fromJson(json, typeString)
     }
 
     @TypeConverter
     fun fromList(list: List<String?>?): String {
-        return gson.toJson(list, type)
+        return gson.toJson(list, typeString)
     }
+
 }
