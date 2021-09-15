@@ -1,8 +1,6 @@
 package com.alex.pokemonlist.presentation.viewmodel
 
 import android.util.Log
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import com.alex.pokemonlist.domain.model.Pokemon
 import com.alex.pokemonlist.domain.usecase.PokemonUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel

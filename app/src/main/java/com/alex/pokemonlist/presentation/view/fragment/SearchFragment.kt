@@ -8,8 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.GridLayoutManager
 import com.alex.pokemonlist.databinding.FragmentSearchBinding
-import com.alex.pokemonlist.domain.model.Favourite
-import com.alex.pokemonlist.presentation.view.adapter.PokedexAdapter
+import com.alex.pokemonlist.presentation.view.adapter.PokemonAdapter
 import com.alex.pokemonlist.presentation.viewmodel.SearchViewModel
 import com.livermor.delegateadapter.delegate.CompositeDelegateAdapter
 import dagger.hilt.android.AndroidEntryPoint
@@ -21,9 +20,9 @@ class SearchFragment : Fragment() {
     private val searchViewModel: SearchViewModel by viewModels()
     private lateinit var binding: FragmentSearchBinding
 
-    private val adapterEvolution by lazy {
+    private val adapterPokemon by lazy {
         CompositeDelegateAdapter(
-            PokedexAdapter()
+            PokemonAdapter()
         )
     }
 
@@ -46,8 +45,7 @@ class SearchFragment : Fragment() {
         with(binding) {
 
             imgAddFavourite.setOnClickListener {
-                val favourite: Favourite = Favourite("$pokeName")
-                searchViewModel.addFavourite(favourite)
+                searchViewModel.addFavourite(pokeName)
             }
             imgSearch.setOnClickListener {
                 pokeName = searchPokemon.text.toString()
@@ -78,36 +76,17 @@ class SearchFragment : Fragment() {
 
 
     private fun init() {
-        binding.recyclerViewEvolution.layoutManager = GridLayoutManager(context, 1)
-        binding.recyclerViewEvolution.adapter = adapterEvolution
+        binding.recyclerViewPokemon.layoutManager = GridLayoutManager(context, 1)
+        binding.recyclerViewPokemon.adapter = adapterPokemon
         setPokemonById()
     }
 
     private fun setPokemonById() {
-        searchViewModel.getPokemonById(pokeName).get(0).evolutions?.let {
-            searchViewModel.getEvolution(it)
-        }?.let { adapterEvolution.swapData(it) }
-        searchViewModel.getPokemonById(pokeName).get(0).evolutions?.let {
-            if (it.size != 1)
-                binding.pokemonFamily.text = "Pokemon and he's evolution line"
-            else
-                binding.pokemonFamily.text = "Pokemon"
-        }
-
+            adapterPokemon.swapData(searchViewModel.getPokemonById(pokeName))
     }
 
     private fun setPokemonByName() {
-        searchViewModel.getPokemonByName(pokeName).get(0).evolutions?.let {
-            searchViewModel.getEvolution(it)
-
-        }?.let { adapterEvolution.swapData(it) }
-        searchViewModel.getPokemonByName(pokeName).get(0).evolutions?.let {
-            if (it.size != 1)
-                binding.pokemonFamily.text = "Pokemon and he's evolution line"
-            else
-                binding.pokemonFamily.text = "Pokemon"
-        }
-
+            adapterPokemon.swapData(searchViewModel.getPokemonByName(pokeName))
     }
 
     private fun toNumber() {

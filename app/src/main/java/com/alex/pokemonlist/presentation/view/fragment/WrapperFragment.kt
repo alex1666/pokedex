@@ -13,6 +13,7 @@ import com.alex.pokemonlist.util.Constants
 
 class WrapperFragment : Fragment() {
 
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,

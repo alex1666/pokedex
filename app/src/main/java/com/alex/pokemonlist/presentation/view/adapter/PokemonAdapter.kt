@@ -5,7 +5,7 @@ import com.alex.pokemonlist.domain.model.Pokemon
 import com.livermor.delegateadapter.delegate.ViewBindingDelegateAdapter
 import com.squareup.picasso.Picasso
 
-class PokedexAdapter :
+class PokemonAdapter :
     ViewBindingDelegateAdapter<Pokemon, PokemonItemBinding>(PokemonItemBinding::inflate) {
     override fun isForViewType(item: Any) = item is Pokemon
 

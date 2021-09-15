@@ -15,7 +15,7 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class MenuFragment : Fragment() {
     private lateinit var binding: FragmentMenuBinding
-    val menuViewModel: MenuViewModel by viewModels()
+    private val menuViewModel: MenuViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,

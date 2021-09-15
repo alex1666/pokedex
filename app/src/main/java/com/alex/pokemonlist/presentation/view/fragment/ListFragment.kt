@@ -44,5 +44,4 @@ class ListFragment : Fragment() {
         adapter.swapData(listViewModel.allPokemon())
     }
 
-
 }

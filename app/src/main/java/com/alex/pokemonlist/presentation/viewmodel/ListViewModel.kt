@@ -13,9 +13,9 @@ import javax.inject.Inject
 class ListViewModel @Inject
 constructor(private val pokemonUseCase: PokemonUseCase) :
     BaseViewModel() {
+
     fun allPokemon():List<Pokemon>{
         return pokemonUseCase.all()
     }
-
 
 }

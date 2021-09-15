@@ -82,14 +82,14 @@
         android:textColor="@color/black"
         android:textSize="28dp" />
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerViewEvolution"
+            android:id="@+id/recyclerViewPokemon"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingStart="8dp"
             android:background="@color/white"
             android:paddingEnd="8dp"
             app:layoutManager="GridLayoutManager"
-            tools:itemCount="3"
+            tools:itemCount="1"
             tools:listitem="@layout/pokemon_item"
             tools:spanCount="1" />
 

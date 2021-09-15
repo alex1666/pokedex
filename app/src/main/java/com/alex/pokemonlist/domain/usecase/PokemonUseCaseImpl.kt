@@ -1,7 +1,6 @@
 package com.alex.pokemonlist.domain.usecase
 
 
-import com.alex.pokemonlist.domain.model.Favourite
 import com.alex.pokemonlist.domain.model.Pokemon
 import com.alex.pokemonlist.domain.repository.PokemonRepository
 import io.reactivex.Single
@@ -35,12 +34,12 @@ constructor(private val repository: PokemonRepository) :
         return repository.getByName(name)
     }
 
-    override fun allFavourite(): List<Favourite> {
-        return repository.allFavourite()
+    override fun getFavourite(): List<Pokemon> {
+        return repository.getFavourite()
     }
 
-    override fun addFavourite(favourite: Favourite) {
-        return repository.addFavourite(favourite)
+    override fun addFavourite(name: String, favourite: Boolean) {
+        return repository.addFavourite(name, favourite)
     }
 
 }

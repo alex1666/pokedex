@@ -1,9 +1,7 @@
 package com.alex.pokemonlist.data.repository
 
-import com.alex.pokemonlist.data.source.local.FavouriteDatabase
 import com.alex.pokemonlist.data.source.local.PokemonDatabase
 import com.alex.pokemonlist.data.source.remote.RetrofitService
-import com.alex.pokemonlist.domain.model.Favourite
 import com.alex.pokemonlist.domain.model.Pokemon
 import com.alex.pokemonlist.domain.repository.PokemonRepository
 import io.reactivex.Single
@@ -13,7 +11,6 @@ class PokemonRepositoryImpl
 @Inject
 constructor(
     private val database: PokemonDatabase,
-    private val favouriteDatabase: FavouriteDatabase,
     private val retrofitService: RetrofitService,
 ) :
     PokemonRepository {
@@ -37,16 +34,15 @@ constructor(
         return database.pokemonDAO().getByIds(Ids)
     }
 
+    override fun getFavourite(): List<Pokemon> {
+        return database.pokemonDAO().getFavourite()
+    }
+
+    override fun addFavourite(name: String, favourite: Boolean) {
+        return database.pokemonDAO().addFavourite(name, favourite)
+    }
+
     override fun getByName(name: String): List<Pokemon> {
         return database.pokemonDAO().getByName(name)
     }
-
-    override fun allFavourite(): List<Favourite> {
-        return favouriteDatabase.favouriteDao().all()
-    }
-
-    override fun addFavourite(favourite: Favourite) {
-        return favouriteDatabase.favouriteDao().add(favourite)
-    }
-
 }

@@ -8,7 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.GridLayoutManager
 import com.alex.pokemonlist.databinding.FragmentFavouriteBinding
-import com.alex.pokemonlist.presentation.view.adapter.PokedexAdapter
+import com.alex.pokemonlist.presentation.view.adapter.PokemonAdapter
 import com.alex.pokemonlist.presentation.viewmodel.FavouriteViewModel
 import com.livermor.delegateadapter.delegate.CompositeDelegateAdapter
 import dagger.hilt.android.AndroidEntryPoint
@@ -20,7 +20,7 @@ class FavouriteFragment : Fragment() {
     private lateinit var binding: FragmentFavouriteBinding
     private val adapter by lazy {
         CompositeDelegateAdapter(
-            PokedexAdapter()
+            PokemonAdapter()
         )
     }
 
@@ -40,7 +40,7 @@ class FavouriteFragment : Fragment() {
 
     private fun initViews() {
         binding.recyclerView.layoutManager = GridLayoutManager(context, 2)
-        adapter.swapData(favouritePokemonViewModel.getListFavouritePokemon())
+        adapter.swapData(favouritePokemonViewModel.getFavourite())
         binding.recyclerView.adapter = adapter
     }
 

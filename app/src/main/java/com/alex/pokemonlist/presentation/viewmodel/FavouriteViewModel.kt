@@ -11,17 +11,8 @@ class FavouriteViewModel
 constructor(private val pokemonUseCase: PokemonUseCase) :
     BaseViewModel() {
 
-    fun getListFavouritePokemon(): List<Pokemon> {
-        return pokemonUseCase.getByIds(getFavouriteIds())
+    fun getFavourite(): List<Pokemon> {
+        return pokemonUseCase.getFavourite()
     }
-
-    private fun getFavouriteIds(): List<String> {
-        val list = mutableListOf<String>()
-        pokemonUseCase.allFavourite().forEach {
-            list.add(it.id)
-        }
-        return list
-    }
-
 
 }

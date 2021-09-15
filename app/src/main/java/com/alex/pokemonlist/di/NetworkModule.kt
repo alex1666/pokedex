@@ -1,7 +1,6 @@
 package com.alex.pokemonlist.di
 
 import com.alex.pokemonlist.data.repository.PokemonRepositoryImpl
-import com.alex.pokemonlist.data.source.local.FavouriteDatabase
 import com.alex.pokemonlist.data.source.local.PokemonDatabase
 import com.alex.pokemonlist.data.source.remote.RetrofitService
 import com.alex.pokemonlist.domain.repository.PokemonRepository
@@ -63,10 +62,9 @@ class NetworkModule {
     @Provides
     fun providePokemonRepository(
         database: PokemonDatabase,
-        favouriteDatabase: FavouriteDatabase,
         retrofitService: RetrofitService,
     ): PokemonRepository {
-        return PokemonRepositoryImpl(database, favouriteDatabase,retrofitService)
+        return PokemonRepositoryImpl(database, retrofitService)
     }
 
     @Singleton

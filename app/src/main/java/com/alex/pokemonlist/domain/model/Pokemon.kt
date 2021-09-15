@@ -10,7 +10,7 @@ import com.google.gson.annotations.SerializedName
 @Entity(tableName = "pokemon")
 @TypeConverters(MyCustomTypeConverter::class)
 class Pokemon(
-    @PrimaryKey @NonNull
+    @PrimaryKey() @NonNull
     val id: String,
     val name: String,
     val height: String,
@@ -19,5 +19,6 @@ class Pokemon(
     val typeOfPokemon: List<String>? = null,
     @SerializedName("imageurl")
     val imageUrl: String,
-    val evolutions:List<String>? = null
+    val favourite: Boolean = false,
+    val evolutions: List<String>? = null,
 )

@@ -25,5 +25,11 @@ interface PokemonDAO {
     @Query("SELECT * FROM pokemon WHERE id IN(:Ids)")
     fun getByIds(Ids: List<String>): List<Pokemon>
 
+    @Query("SELECT * FROM pokemon WHERE favourite")
+    fun getFavourite(): List<Pokemon>
+
+    @Query("UPDATE pokemon SET favourite=:favourite WHERE id=:name")
+    fun addFavourite(name: String, favourite: Boolean)
+
 
 }
