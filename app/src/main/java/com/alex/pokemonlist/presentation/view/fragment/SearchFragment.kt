@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.GridLayoutManager
 import com.alex.pokemonlist.databinding.FragmentSearchBinding
+import com.alex.pokemonlist.presentation.view.adapter.ListPokemonAdapter
 import com.alex.pokemonlist.presentation.view.adapter.PokemonAdapter
 import com.alex.pokemonlist.presentation.viewmodel.SearchViewModel
 import com.livermor.delegateadapter.delegate.CompositeDelegateAdapter
@@ -21,9 +22,11 @@ class SearchFragment : Fragment() {
     private lateinit var binding: FragmentSearchBinding
 
     private val adapterPokemon by lazy {
-        CompositeDelegateAdapter(
-            PokemonAdapter()
-        )
+        context?.let { ListPokemonAdapter(it) }?.let {
+            CompositeDelegateAdapter(
+                it
+            )
+        }
     }
 
     override fun onCreateView(
@@ -43,7 +46,6 @@ class SearchFragment : Fragment() {
 
     private fun initViews() {
         with(binding) {
-
             imgAddFavourite.setOnClickListener {
                 searchViewModel.addFavourite(pokeName)
             }
@@ -82,11 +84,11 @@ class SearchFragment : Fragment() {
     }
 
     private fun setPokemonById() {
-            adapterPokemon.swapData(searchViewModel.getPokemonById(pokeName))
+        adapterPokemon?.swapData(searchViewModel.getPokemonById(pokeName))
     }
 
     private fun setPokemonByName() {
-            adapterPokemon.swapData(searchViewModel.getPokemonByName(pokeName))
+        adapterPokemon?.swapData(searchViewModel.getPokemonByName(pokeName))
     }
 
     private fun toNumber() {

@@ -22,7 +22,7 @@ constructor(private val pokemonUseCase: PokemonUseCase) :
         return pokemonUseCase.getByIds(id)
     }
     fun addFavourite(name: String){
-        return pokemonUseCase.addFavourite(name,true)
+        pokemonUseCase.addFavourite(name,true)
     }
 }
 

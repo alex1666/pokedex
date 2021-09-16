@@ -31,5 +31,4 @@ interface PokemonDAO {
     @Query("UPDATE pokemon SET favourite=:favourite WHERE id=:name")
     fun addFavourite(name: String, favourite: Boolean)
 
-
 }

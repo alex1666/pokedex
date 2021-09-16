@@ -8,7 +8,7 @@ import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
 @HiltViewModel
-class MenuViewModel
+class WrapperViewModel
 @Inject
 constructor(private val pokemonUseCase: PokemonUseCase) :
     BaseViewModel() {
@@ -24,7 +24,8 @@ constructor(private val pokemonUseCase: PokemonUseCase) :
     private fun getListPokemon() {
         pokemonUseCase.pokemonUseCase()
             .subscribeOn(Schedulers.io())
-            .subscribe({ addDao(it) },
+            .subscribe({ if(pokemonUseCase.all().isEmpty())
+                addDao(it) },
                 { error ->
                     Log.e(error::class.simpleName, error.message.toString())
                 })

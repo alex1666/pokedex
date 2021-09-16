@@ -19,10 +19,13 @@ class ListFragment : Fragment() {
     private val listViewModel: ListViewModel by viewModels()
     private lateinit var binding: FragmentListBinding
     private val adapter by lazy {
-        CompositeDelegateAdapter(
-            ListPokemonAdapter()
-        )
+        context?.let { ListPokemonAdapter(it) }?.let {
+            CompositeDelegateAdapter(
+                it
+            )
+        }
     }
+
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -41,7 +44,7 @@ class ListFragment : Fragment() {
     private fun initViews() {
         binding.recyclerView.layoutManager = GridLayoutManager(context, 2)
         binding.recyclerView.adapter = adapter
-        adapter.swapData(listViewModel.allPokemon())
+        adapter?.swapData(listViewModel.allPokemon())
     }
 
 }

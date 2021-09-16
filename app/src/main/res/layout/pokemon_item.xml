@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/relativeLayoutBackground"
     android:layout_width="match_parent"
     android:layout_height="120dp"
@@ -26,9 +27,8 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
-        android:alpha="0.25"
         android:gravity="top"
-        android:text="#001"
+        android:textColor="@color/white"
         android:textSize="18sp"
         android:textStyle="bold"
         tools:text="#001" />

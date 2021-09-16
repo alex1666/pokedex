@@ -19,6 +19,7 @@ class Pokemon(
     val typeOfPokemon: List<String>? = null,
     @SerializedName("imageurl")
     val imageUrl: String,
-    val favourite: Boolean = false,
+    val favourite: Boolean,
     val evolutions: List<String>? = null,
 )
+
