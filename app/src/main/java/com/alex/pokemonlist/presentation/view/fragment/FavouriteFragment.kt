@@ -19,11 +19,9 @@ class FavouriteFragment : Fragment() {
     private val favouritePokemonViewModel: FavouriteViewModel by viewModels()
     private lateinit var binding: FragmentFavouriteBinding
     private val adapter by lazy {
-        context?.let { ListPokemonAdapter(it) }?.let {
-            CompositeDelegateAdapter(
-                it
-            )
-        }
+        CompositeDelegateAdapter(
+            ListPokemonAdapter()
+        )
     }
 
     override fun onCreateView(

@@ -22,11 +22,9 @@ class SearchFragment : Fragment() {
     private lateinit var binding: FragmentSearchBinding
 
     private val adapterPokemon by lazy {
-        context?.let { ListPokemonAdapter(it) }?.let {
-            CompositeDelegateAdapter(
-                it
-            )
-        }
+        CompositeDelegateAdapter(
+            ListPokemonAdapter()
+        )
     }
 
     override fun onCreateView(
