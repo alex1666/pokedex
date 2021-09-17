@@ -19,11 +19,9 @@ class ListFragment : Fragment() {
     private val listViewModel: ListViewModel by viewModels()
     private lateinit var binding: FragmentListBinding
     private val adapter by lazy {
-        context?.let { ListPokemonAdapter(it) }?.let {
-            CompositeDelegateAdapter(
-                it
-            )
-        }
+        CompositeDelegateAdapter(
+            ListPokemonAdapter()
+        )
     }
 
 
