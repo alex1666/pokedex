@@ -6,12 +6,16 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.asLiveData
 import androidx.recyclerview.widget.GridLayoutManager
 import com.alex.pokemonlist.databinding.FragmentListBinding
+import com.alex.pokemonlist.domain.model.Pokemon
 import com.alex.pokemonlist.presentation.view.adapter.ListPokemonAdapter
 import com.alex.pokemonlist.presentation.viewmodel.ListViewModel
 import com.livermor.delegateadapter.delegate.CompositeDelegateAdapter
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.flow.single
 
 
 @AndroidEntryPoint
@@ -42,7 +46,6 @@ class ListFragment : Fragment() {
     private fun initViews() {
         binding.recyclerView.layoutManager = GridLayoutManager(context, 2)
         binding.recyclerView.adapter = adapter
-        adapter?.swapData(listViewModel.allPokemon())
+        listViewModel.allPokemon().asLiveData().observe(viewLifecycleOwner,{list-> adapter.swapData(list) })
     }
-
 }

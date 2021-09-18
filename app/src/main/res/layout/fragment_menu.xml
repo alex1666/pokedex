@@ -1,40 +1,145 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".presentation.view.fragment.MenuFragment">
+    android:background="@color/orange"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:padding="10dp"
+    android:radius="10.0dp"
+    tools:context=".presentation.view.fragment.MenuFragment"
+    tools:ignore="MissingConstraints">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:backgroundTint="#FFFFFF"
-        android:orientation="vertical"
-        android:padding="10dp"
-        android:radius="10.0dp"
+    <ImageView
+        android:id="@+id/img_random"
+        android:layout_width="160dp"
+        android:layout_height="160dp"
+        android:layout_marginTop="108dp"
+        android:src="@drawable/catching"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/img_bag"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/img_bag"
+        app:layout_constraintTop_toBottomOf="@+id/img_bag"
+        app:layout_constraintVertical_bias="0.191"
+        app:srcCompat="@drawable/catching"
+        tools:ignore="ContentDescription" />
+
+    <ImageView
+        android:id="@+id/img_favourite"
+        android:layout_width="160dp"
+        android:layout_height="160dp"
+        android:layout_marginEnd="16dp"
+        android:src="@drawable/favourite"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.266"
+        tools:ignore="ContentDescription" />
+
+    <ImageView
+        android:id="@+id/img_list"
+        android:layout_width="160dp"
+        android:layout_height="160dp"
+        android:layout_marginTop="95dp"
+        android:src="@drawable/pokedex"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.72"
+        app:layout_constraintStart_toStartOf="@+id/img_favourite"
+        app:layout_constraintTop_toBottomOf="@+id/img_favourite"
+        app:layout_constraintVertical_bias="0.006" />
+
+    <ImageView
+        android:id="@+id/img_bag"
+        android:layout_width="160dp"
+        android:layout_height="160dp"
+        android:layout_marginEnd="40dp"
+        android:src="@drawable/bag"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/img_favourite"
+        app:layout_constraintHorizontal_bias="0.432"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.408" />
+
+    <TextView
+        android:id="@+id/listWish"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/background_item"
+        android:backgroundTint="@color/red"
+        android:paddingStart="8dp"
+        android:paddingEnd="8dp"
+        android:text="@string/listWish"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/img_favourite"
+        app:layout_constraintEnd_toEndOf="@+id/img_favourite"
+        app:layout_constraintHorizontal_bias="0.705"
+        app:layout_constraintStart_toStartOf="@+id/img_favourite" />
+
+    <TextView
+        android:id="@+id/bag"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/background_item"
+        android:backgroundTint="@color/lightTeal"
+        android:paddingStart="8dp"
+        android:paddingEnd="8dp"
+        android:text="@string/bag"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/img_bag"
+        app:layout_constraintEnd_toEndOf="@+id/img_bag"
+        app:layout_constraintHorizontal_bias="0.464"
+        app:layout_constraintStart_toStartOf="@+id/img_bag" />
+
+    <TextView
+        android:id="@+id/catching"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="4dp"
+        android:background="@drawable/background_item"
+        android:backgroundTint="@color/lightYellow"
         android:gravity="center"
-        tools:ignore="MissingConstraints">
+        android:paddingStart="6dp"
+        android:paddingEnd="6dp"
+        android:text="@string/Catching"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/img_random"
+        app:layout_constraintEnd_toEndOf="@+id/img_random"
+        app:layout_constraintHorizontal_bias="0.45"
+        app:layout_constraintStart_toStartOf="@+id/img_random" />
 
-            <ImageView
-                android:id="@+id/img_random"
-                android:layout_width="wrap_content"
-                android:layout_height="120dp"
-                android:src="@drawable/cub"
-                tools:ignore="ContentDescription" />
-
-            <ImageView
-                android:id="@+id/img_favourite"
-                android:layout_width="wrap_content"
-                android:layout_height="120dp"
-                android:src="@drawable/unnamed"
-                tools:ignore="ContentDescription" />
-
-            <ImageView
-                android:id="@+id/img_list"
-                android:layout_width="wrap_content"
-                android:layout_height="120dp"
-                android:src="@drawable/list" />
-        </LinearLayout>
-
-</FrameLayout>
+    <TextView
+        android:id="@+id/listPokemon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/background_item"
+        android:backgroundTint="@color/lightBlue"
+        android:gravity="center"
+        android:paddingStart="8dp"
+        android:paddingEnd="8dp"
+        android:text="@string/listPokemon"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/img_list"
+        app:layout_constraintEnd_toEndOf="@+id/img_list"
+        app:layout_constraintHorizontal_bias="0.42"
+        app:layout_constraintStart_toStartOf="@+id/img_list" />
+</androidx.constraintlayout.widget.ConstraintLayout>

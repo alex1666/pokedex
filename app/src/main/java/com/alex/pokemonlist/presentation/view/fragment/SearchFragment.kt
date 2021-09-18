@@ -6,13 +6,18 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.asLiveData
+import androidx.lifecycle.viewModelScope
 import androidx.recyclerview.widget.GridLayoutManager
 import com.alex.pokemonlist.databinding.FragmentSearchBinding
+import com.alex.pokemonlist.domain.model.Pokemon
 import com.alex.pokemonlist.presentation.view.adapter.ListPokemonAdapter
-import com.alex.pokemonlist.presentation.view.adapter.PokemonAdapter
 import com.alex.pokemonlist.presentation.viewmodel.SearchViewModel
 import com.livermor.delegateadapter.delegate.CompositeDelegateAdapter
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.launch
 
 
 @AndroidEntryPoint
@@ -50,7 +55,6 @@ class SearchFragment : Fragment() {
             imgSearch.setOnClickListener {
                 pokeName = searchPokemon.text.toString()
                 try {
-                    searchViewModel.getPokemonByName(pokeName)
                     setPokemonByName()
 
                 } catch (e: IndexOutOfBoundsException) {
@@ -58,7 +62,6 @@ class SearchFragment : Fragment() {
                 }
                 try {
                     toNumber()
-                    searchViewModel.getPokemonById(pokeName)
                     setPokemonById()
                 } catch (e: IndexOutOfBoundsException) {
                     null
@@ -82,11 +85,17 @@ class SearchFragment : Fragment() {
     }
 
     private fun setPokemonById() {
-        adapterPokemon?.swapData(searchViewModel.getPokemonById(pokeName))
+        searchViewModel.viewModelScope.launch {
+            searchViewModel.getPokemonById(pokeName).asLiveData()
+                .observe(viewLifecycleOwner, { list -> adapterPokemon.swapData(list) })
+        }
     }
 
     private fun setPokemonByName() {
-        adapterPokemon?.swapData(searchViewModel.getPokemonByName(pokeName))
+        searchViewModel.viewModelScope.launch {
+            searchViewModel.getPokemonByName(pokeName).asLiveData()
+                .observe(viewLifecycleOwner, { list -> adapterPokemon.swapData(list) })
+        }
     }
 
     private fun toNumber() {

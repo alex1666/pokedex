@@ -2,4 +2,8 @@
     <string name="app_name">pokemonlist</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="listWish">Список желаний</string>
+    <string name="bag">Мои покемоны</string>
+    <string name="Catching">Поймай своего покемона</string>
+    <string name="listPokemon">Покедекс</string>
 </resources>

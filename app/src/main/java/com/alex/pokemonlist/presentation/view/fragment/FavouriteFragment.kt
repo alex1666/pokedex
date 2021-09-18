@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.asLiveData
 import androidx.recyclerview.widget.GridLayoutManager
 import com.alex.pokemonlist.databinding.FragmentFavouriteBinding
 import com.alex.pokemonlist.presentation.view.adapter.ListPokemonAdapter
@@ -40,7 +41,7 @@ class FavouriteFragment : Fragment() {
 
     private fun initViews() {
         binding.recyclerView.layoutManager = GridLayoutManager(context, 2)
-        adapter?.swapData(favouritePokemonViewModel.getFavourite())
+        favouritePokemonViewModel.getFavourite().asLiveData().observe(viewLifecycleOwner,{list-> adapter.swapData(list) })
         binding.recyclerView.adapter = adapter
     }
 

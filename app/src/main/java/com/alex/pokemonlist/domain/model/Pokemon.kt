@@ -6,6 +6,8 @@ import androidx.room.PrimaryKey
 import androidx.room.TypeConverters
 import com.alex.pokemonlist.util.MyCustomTypeConverter
 import com.google.gson.annotations.SerializedName
+import dagger.hilt.android.AndroidEntryPoint
+
 
 @Entity(tableName = "pokemon")
 @TypeConverters(MyCustomTypeConverter::class)

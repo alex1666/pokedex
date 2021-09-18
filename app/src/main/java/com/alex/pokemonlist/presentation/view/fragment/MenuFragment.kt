@@ -29,6 +29,8 @@ class MenuFragment : Fragment() {
         initViews()
     }
 
+
+
     private fun initViews() {
         with(binding) {
             imgRandom.setOnClickListener {
