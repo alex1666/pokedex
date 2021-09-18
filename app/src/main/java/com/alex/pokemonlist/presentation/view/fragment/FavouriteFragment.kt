@@ -41,7 +41,8 @@ class FavouriteFragment : Fragment() {
 
     private fun initViews() {
         binding.recyclerView.layoutManager = GridLayoutManager(context, 2)
-        favouritePokemonViewModel.getFavourite().asLiveData().observe(viewLifecycleOwner,{list-> adapter.swapData(list) })
+        favouritePokemonViewModel.getFavourite().asLiveData()
+            .observe(viewLifecycleOwner, { list -> adapter.swapData(list) })
         binding.recyclerView.adapter = adapter
     }
 

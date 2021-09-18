@@ -18,5 +18,4 @@ class  MyCustomTypeConverter {
     fun fromList(list: List<String?>?): String {
         return gson.toJson(list, typeString)
     }
-
 }

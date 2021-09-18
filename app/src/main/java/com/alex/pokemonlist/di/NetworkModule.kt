@@ -6,7 +6,7 @@ import com.alex.pokemonlist.data.source.remote.RetrofitService
 import com.alex.pokemonlist.domain.repository.PokemonRepository
 import com.alex.pokemonlist.domain.usecase.PokemonUseCase
 import com.alex.pokemonlist.domain.usecase.PokemonUseCaseImpl
-import com.alex.pokemonlist.util.Constants.baseUrl
+import com.alex.pokemonlist.util.Constants.BASE_URL
 import com.google.gson.Gson
 import dagger.Module
 import dagger.Provides
@@ -28,7 +28,7 @@ class NetworkModule {
         rxJava2CallAdapterFactory: RxJava2CallAdapterFactory,
     ): Retrofit {
         return Retrofit.Builder()
-            .baseUrl(baseUrl)
+            .baseUrl(BASE_URL)
             .addConverterFactory(gsonConverterFactory)
             .addCallAdapterFactory(rxJava2CallAdapterFactory)
             .build()
@@ -72,6 +72,4 @@ class NetworkModule {
     fun providePokemonUseCase(pokemonRepository: PokemonRepository): PokemonUseCase {
         return PokemonUseCaseImpl(pokemonRepository)
     }
-
-
 }

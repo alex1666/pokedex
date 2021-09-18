@@ -1,7 +1,7 @@
-package com.alex.pokemonlist
+package com.alex.pokemonlist.core
 
 import android.app.Application
 import dagger.hilt.android.HiltAndroidApp
 
 @HiltAndroidApp
-class MyApplication : Application()
+class PokemonApplication : Application()

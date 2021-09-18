@@ -1,18 +1,14 @@
 package com.alex.pokemonlist.presentation.viewmodel
 
 import android.util.Log
-import androidx.lifecycle.LifecycleOwner
-import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
 import com.alex.pokemonlist.domain.model.Pokemon
 import com.alex.pokemonlist.domain.usecase.PokemonUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
-import io.reactivex.Single
 import io.reactivex.schedulers.Schedulers
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.*
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 @HiltViewModel
@@ -22,7 +18,7 @@ constructor(private val pokemonUseCase: PokemonUseCase) :
     BaseViewModel() {
 
     fun refreshData() {
-        viewModelScope.launch(Dispatchers.IO) {  getListPokemon()}
+        viewModelScope.launch(Dispatchers.IO) { getListPokemon() }
     }
 
     private fun addDao(Pokemon: List<Pokemon>) {
@@ -33,7 +29,12 @@ constructor(private val pokemonUseCase: PokemonUseCase) :
     private fun getListPokemon() {
         pokemonUseCase.pokemonUseCase()
             .subscribeOn(Schedulers.io())
-            .subscribe({ viewModelScope.launch(Dispatchers.IO) { pokemonUseCase.all().collect { value: List<Pokemon> -> if(value.isEmpty()) addDao(it) }}},
+            .subscribe({
+                viewModelScope.launch(Dispatchers.IO) {
+                    pokemonUseCase.all()
+                        .collect { value: List<Pokemon> -> if (value.isEmpty()) addDao(it) }
+                }
+            },
                 { error ->
                     Log.e(error::class.simpleName, error.message.toString())
                 })

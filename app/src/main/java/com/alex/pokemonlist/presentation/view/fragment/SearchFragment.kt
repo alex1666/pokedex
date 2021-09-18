@@ -10,13 +10,10 @@ import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
 import androidx.recyclerview.widget.GridLayoutManager
 import com.alex.pokemonlist.databinding.FragmentSearchBinding
-import com.alex.pokemonlist.domain.model.Pokemon
 import com.alex.pokemonlist.presentation.view.adapter.ListPokemonAdapter
 import com.alex.pokemonlist.presentation.viewmodel.SearchViewModel
 import com.livermor.delegateadapter.delegate.CompositeDelegateAdapter
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
 
@@ -50,7 +47,9 @@ class SearchFragment : Fragment() {
     private fun initViews() {
         with(binding) {
             imgAddFavourite.setOnClickListener {
-                searchViewModel.addFavourite(pokeName)
+                searchViewModel.viewModelScope.launch {
+                    searchViewModel.addFavourite(pokeName)
+                }
             }
             imgSearch.setOnClickListener {
                 pokeName = searchPokemon.text.toString()

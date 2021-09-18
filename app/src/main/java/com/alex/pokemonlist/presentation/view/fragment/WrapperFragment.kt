@@ -33,7 +33,7 @@ class WrapperFragment : Fragment() {
         Handler().postDelayed({
             wrapperViewModel.refreshData()
             findNavController().navigate(R.id.action_wrapperFragment_to_menuFragment)
-        }, Constants.wallpaperTime.toLong())
+        }, Constants.WRAPPER_TIME.toLong())
 
     }
 }
