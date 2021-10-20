@@ -1,17 +1,16 @@
-package com.alex.pokemonlist.presentation.view.fragment
+package com.alex.pokemonlist.presentation.pokemonsearch
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
 import androidx.recyclerview.widget.GridLayoutManager
 import com.alex.pokemonlist.databinding.FragmentSearchBinding
-import com.alex.pokemonlist.presentation.view.adapter.ListPokemonAdapter
-import com.alex.pokemonlist.presentation.viewmodel.SearchViewModel
+import com.alex.pokemonlist.presentation.adapter.ListPokemonAdapter
 import com.livermor.delegateadapter.delegate.CompositeDelegateAdapter
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
@@ -19,7 +18,7 @@ import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class SearchFragment : Fragment() {
-    var pokeName: String = "#001"
+    private var pokeName: String = "#001"
     private val searchViewModel: SearchViewModel by viewModels()
     private lateinit var binding: FragmentSearchBinding
 
@@ -52,10 +51,10 @@ class SearchFragment : Fragment() {
                 }
             }
             imgSearch.setOnClickListener {
+                Log.e("SHIT", "name= 1")
                 pokeName = searchPokemon.text.toString()
                 try {
                     setPokemonByName()
-
                 } catch (e: IndexOutOfBoundsException) {
                     null
                 }
@@ -69,31 +68,41 @@ class SearchFragment : Fragment() {
             }
 
             imgRandom.setOnClickListener {
+                Log.e("SHIT", "name= 2")
                 pokeName = (0..809).random().toString()
                 toNumber()
-                setPokemonById()
+
+                searchViewModel.viewModelScope.launch {
+                    setPokemonById()
+                }
             }
         }
     }
 
-
     private fun init() {
         binding.recyclerViewPokemon.layoutManager = GridLayoutManager(context, 1)
         binding.recyclerViewPokemon.adapter = adapterPokemon
-        setPokemonById()
+        searchViewModel.viewModelScope.launch {
+            setPokemonById()
+        }
     }
 
     private fun setPokemonById() {
+        Log.e("SHIT", "name= $pokeName")
+
         searchViewModel.viewModelScope.launch {
-            searchViewModel.getPokemonById(pokeName).asLiveData()
-                .observe(viewLifecycleOwner, { list -> adapterPokemon.swapData(list) })
+            adapterPokemon.swapData(
+                searchViewModel.getPokemonById(
+                    pokeName
+                )
+            )
         }
+
     }
 
     private fun setPokemonByName() {
         searchViewModel.viewModelScope.launch {
-            searchViewModel.getPokemonByName(pokeName).asLiveData()
-                .observe(viewLifecycleOwner, { list -> adapterPokemon.swapData(list) })
+            adapterPokemon.swapData(searchViewModel.getPokemonByName(pokeName))
         }
     }
 

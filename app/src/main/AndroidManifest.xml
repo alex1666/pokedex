@@ -12,7 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Pokemonlist">
         <activity
-            android:name="com.alex.pokemonlist.presentation.view.MainActivity">
+            android:name="com.alex.pokemonlist.presentation.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

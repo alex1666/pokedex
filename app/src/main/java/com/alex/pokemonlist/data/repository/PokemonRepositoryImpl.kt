@@ -1,7 +1,8 @@
 package com.alex.pokemonlist.data.repository
 
+import androidx.lifecycle.LiveData
 import com.alex.pokemonlist.data.source.local.PokemonDatabase
-import com.alex.pokemonlist.data.source.remote.RetrofitService
+import com.alex.pokemonlist.data.source.remote.PokemonApi
 import com.alex.pokemonlist.domain.model.Pokemon
 import com.alex.pokemonlist.domain.repository.PokemonRepository
 import io.reactivex.Single
@@ -12,14 +13,14 @@ class PokemonRepositoryImpl
 @Inject
 constructor(
     private val database: PokemonDatabase,
-    private val retrofitService: RetrofitService,
+    private val pokemonApi: PokemonApi,
 ) :
     PokemonRepository {
     override fun getPokemon(): Single<List<Pokemon>> {
-        return retrofitService.getPokemon()
+        return pokemonApi.getPokemon()
     }
 
-    override fun all(): Flow<List<Pokemon>> {
+    override fun all(): LiveData<List<Pokemon>> {
         return database.pokemonDAO().all()
     }
 
@@ -27,15 +28,15 @@ constructor(
         database.pokemonDAO().add(pokemon)
     }
 
-    override fun getById(id: String): Flow<List<Pokemon>> {
+    override fun getById(id: String): List<Pokemon> {
         return database.pokemonDAO().getById(id)
     }
 
-    override fun getByIds(evolutionIds: List<String>): Flow<List<Pokemon>> {
+    override fun getByIds(evolutionIds: List<String>): List<Pokemon> {
         return database.pokemonDAO().getByIds(evolutionIds)
     }
 
-    override fun getFavourite(): Flow<List<Pokemon>> {
+    override fun getFavourite(): LiveData<List<Pokemon>> {
         return database.pokemonDAO().getFavourite()
     }
 
@@ -44,7 +45,7 @@ constructor(
 
     }
 
-    override fun getByName(name: String): Flow<List<Pokemon>> {
+    override fun getByName(name: String): List<Pokemon> {
         return database.pokemonDAO().getByName(name)
     }
 }

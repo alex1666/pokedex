@@ -1,4 +1,4 @@
-package com.alex.pokemonlist.presentation.view.fragment
+package com.alex.pokemonlist.presentation.wrapper
 
 import android.os.Bundle
 import android.os.Handler
@@ -9,7 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.alex.pokemonlist.R
-import com.alex.pokemonlist.presentation.viewmodel.WrapperViewModel
+import com.alex.pokemonlist.presentation.wrapper.WrapperViewModel
 import com.alex.pokemonlist.util.Constants
 import dagger.hilt.android.AndroidEntryPoint
 

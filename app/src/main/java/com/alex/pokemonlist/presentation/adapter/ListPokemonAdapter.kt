@@ -1,4 +1,4 @@
-package com.alex.pokemonlist.presentation.view.adapter
+package com.alex.pokemonlist.presentation.adapter
 
 import android.annotation.SuppressLint
 import android.graphics.PorterDuff
@@ -9,7 +9,6 @@ import com.alex.pokemonlist.domain.model.Pokemon
 import com.alex.pokemonlist.util.PokemonColorUtil
 import com.livermor.delegateadapter.delegate.ViewBindingDelegateAdapter
 import com.squareup.picasso.Picasso
-import dagger.hilt.android.AndroidEntryPoint
 
 
 class ListPokemonAdapter() :

@@ -1,4 +1,4 @@
-package com.alex.pokemonlist.presentation.view
+package com.alex.pokemonlist.presentation
 
 import android.os.Bundle
 import androidx.fragment.app.FragmentActivity

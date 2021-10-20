@@ -1,4 +1,4 @@
-package com.alex.pokemonlist.presentation.viewmodel
+package com.alex.pokemonlist.presentation.base
 
 import androidx.lifecycle.ViewModel
 import io.reactivex.disposables.CompositeDisposable

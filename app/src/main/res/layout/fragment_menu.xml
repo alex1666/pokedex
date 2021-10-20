@@ -9,7 +9,7 @@
     android:orientation="vertical"
     android:padding="10dp"
     android:radius="10.0dp"
-    tools:context=".presentation.view.fragment.MenuFragment"
+    tools:context=".presentation.menu.MenuFragment"
     tools:ignore="MissingConstraints">
 
     <ImageView

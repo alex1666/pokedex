@@ -4,10 +4,9 @@ import com.alex.pokemonlist.domain.model.Pokemon
 import io.reactivex.Single
 import retrofit2.http.GET
 
-interface RetrofitService {
+interface PokemonApi {
 
     @GET("pokemon.json")
     fun getPokemon(): Single<List<Pokemon>>
-
 
 }

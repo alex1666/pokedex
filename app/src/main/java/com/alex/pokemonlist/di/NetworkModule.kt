@@ -2,10 +2,10 @@ package com.alex.pokemonlist.di
 
 import com.alex.pokemonlist.data.repository.PokemonRepositoryImpl
 import com.alex.pokemonlist.data.source.local.PokemonDatabase
-import com.alex.pokemonlist.data.source.remote.RetrofitService
+import com.alex.pokemonlist.data.source.remote.PokemonApi
 import com.alex.pokemonlist.domain.repository.PokemonRepository
-import com.alex.pokemonlist.domain.usecase.PokemonUseCase
-import com.alex.pokemonlist.domain.usecase.PokemonUseCaseImpl
+import com.alex.pokemonlist.domain.interactor.PokemonInteractor
+import com.alex.pokemonlist.domain.interactor.PokemonInteractorImpl
 import com.alex.pokemonlist.util.Constants.BASE_URL
 import com.google.gson.Gson
 import dagger.Module
@@ -54,22 +54,8 @@ class NetworkModule {
 
     @Singleton
     @Provides
-    fun provideService(retrofit: Retrofit): RetrofitService {
-        return retrofit.create(RetrofitService::class.java)
+    fun provideService(retrofit: Retrofit): PokemonApi {
+        return retrofit.create(PokemonApi::class.java)
     }
 
-    @Singleton
-    @Provides
-    fun providePokemonRepository(
-        database: PokemonDatabase,
-        retrofitService: RetrofitService,
-    ): PokemonRepository {
-        return PokemonRepositoryImpl(database, retrofitService)
-    }
-
-    @Singleton
-    @Provides
-    fun providePokemonUseCase(pokemonRepository: PokemonRepository): PokemonUseCase {
-        return PokemonUseCaseImpl(pokemonRepository)
-    }
 }

@@ -1,5 +1,6 @@
 package com.alex.pokemonlist.data.source.local.dao
 
+import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
@@ -11,22 +12,22 @@ import kotlinx.coroutines.flow.Flow
 interface PokemonDAO {
 
     @Query("SELECT * FROM pokemon")
-    fun all(): Flow<List<Pokemon>>
+    fun all(): LiveData<List<Pokemon>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun add(pokemon: List<Pokemon>)
 
     @Query("SELECT * FROM pokemon WHERE id = :id")
-    fun getById(id: String): Flow<List<Pokemon>>
+    fun getById(id: String): List<Pokemon>
 
     @Query("SELECT * FROM pokemon WHERE name = :name")
-    fun getByName(name: String): Flow<List<Pokemon>>
+    fun getByName(name: String): List<Pokemon>
 
     @Query("SELECT * FROM pokemon WHERE id IN(:Ids)")
-    fun getByIds(Ids: List<String>): Flow<List<Pokemon>>
+    fun getByIds(Ids: List<String>): List<Pokemon>
 
     @Query("SELECT * FROM pokemon WHERE favourite")
-    fun getFavourite(): Flow<List<Pokemon>>
+    fun getFavourite(): LiveData<List<Pokemon>>
 
     @Query("UPDATE pokemon SET favourite=:favourite WHERE id=:name")
     fun addFavourite(name: String, favourite: Boolean)

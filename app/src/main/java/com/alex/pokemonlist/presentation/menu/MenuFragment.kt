@@ -1,4 +1,4 @@
-package com.alex.pokemonlist.presentation.view.fragment
+package com.alex.pokemonlist.presentation.menu
 
 import android.os.Bundle
 import android.view.LayoutInflater
