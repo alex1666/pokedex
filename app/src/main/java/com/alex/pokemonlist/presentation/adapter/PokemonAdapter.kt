@@ -1,4 +1,4 @@
-package com.alex.pokemonlist.presentation.view.adapter
+package com.alex.pokemonlist.presentation.adapter
 
 import android.annotation.SuppressLint
 import android.graphics.PorterDuff

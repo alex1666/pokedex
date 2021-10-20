@@ -1,20 +1,20 @@
-package com.alex.pokemonlist.domain.usecase
+package com.alex.pokemonlist.domain.interactor
 
-
+import androidx.lifecycle.LiveData
 import com.alex.pokemonlist.domain.model.Pokemon
 import com.alex.pokemonlist.domain.repository.PokemonRepository
 import io.reactivex.Single
 import javax.inject.Inject
 
-class PokemonUseCaseImpl
+class PokemonInteractorImpl
 @Inject
 constructor(private val repository: PokemonRepository) :
-    PokemonUseCase {
-    override fun pokemonUseCase(): Single<List<Pokemon>> {
+    PokemonInteractor {
+    override fun getPokemon(): Single<List<Pokemon>> {
         return repository.getPokemon()
     }
 
-    override fun all(): List<Pokemon> {
+    override fun all(): LiveData<List<Pokemon>> {
         return repository.all()
     }
 
@@ -34,12 +34,11 @@ constructor(private val repository: PokemonRepository) :
         return repository.getByName(name)
     }
 
-    override fun getFavourite(): List<Pokemon> {
+    override fun getFavourite(): LiveData<List<Pokemon>> {
         return repository.getFavourite()
     }
 
     override fun addFavourite(name: String, favourite: Boolean) {
         return repository.addFavourite(name, favourite)
     }
-
 }

@@ -7,6 +7,5 @@ import com.alex.pokemonlist.domain.model.Pokemon
 
 @Database(entities = [Pokemon::class], version = 5)
 abstract class PokemonDatabase : RoomDatabase() {
-
     abstract fun pokemonDAO(): PokemonDAO
 }

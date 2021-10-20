@@ -1,4 +1,4 @@
-package com.alex.pokemonlist.presentation.view.fragment
+package com.alex.pokemonlist.presentation.menu
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -28,6 +28,8 @@ class MenuFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         initViews()
     }
+
+
 
     private fun initViews() {
         with(binding) {

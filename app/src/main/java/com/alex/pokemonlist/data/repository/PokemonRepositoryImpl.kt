@@ -1,45 +1,48 @@
 package com.alex.pokemonlist.data.repository
 
+import androidx.lifecycle.LiveData
 import com.alex.pokemonlist.data.source.local.PokemonDatabase
-import com.alex.pokemonlist.data.source.remote.RetrofitService
+import com.alex.pokemonlist.data.source.remote.PokemonApi
 import com.alex.pokemonlist.domain.model.Pokemon
 import com.alex.pokemonlist.domain.repository.PokemonRepository
 import io.reactivex.Single
+import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
 class PokemonRepositoryImpl
 @Inject
 constructor(
     private val database: PokemonDatabase,
-    private val retrofitService: RetrofitService,
+    private val pokemonApi: PokemonApi,
 ) :
     PokemonRepository {
     override fun getPokemon(): Single<List<Pokemon>> {
-        return retrofitService.getPokemon()
+        return pokemonApi.getPokemon()
     }
 
-    override fun all(): List<Pokemon> {
+    override fun all(): LiveData<List<Pokemon>> {
         return database.pokemonDAO().all()
     }
 
     override fun add(pokemon: List<Pokemon>) {
-        return database.pokemonDAO().add(pokemon)
+        database.pokemonDAO().add(pokemon)
     }
 
     override fun getById(id: String): List<Pokemon> {
         return database.pokemonDAO().getById(id)
     }
 
-    override fun getByIds(Ids: List<String>): List<Pokemon> {
-        return database.pokemonDAO().getByIds(Ids)
+    override fun getByIds(evolutionIds: List<String>): List<Pokemon> {
+        return database.pokemonDAO().getByIds(evolutionIds)
     }
 
-    override fun getFavourite(): List<Pokemon> {
+    override fun getFavourite(): LiveData<List<Pokemon>> {
         return database.pokemonDAO().getFavourite()
     }
 
     override fun addFavourite(name: String, favourite: Boolean) {
-        return database.pokemonDAO().addFavourite(name, favourite)
+        database.pokemonDAO().addFavourite(name, favourite)
+
     }
 
     override fun getByName(name: String): List<Pokemon> {
